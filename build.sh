@@ -1,20 +1,19 @@
 #!/bin/bash
 
-echo "Installing backend dependencies..."
-npm install
+echo "🚀 Building HelpDesk Mini for Production..."
 
-echo "Installing frontend dependencies..."
+# Build frontend
+echo "📦 Building frontend..."
 cd frontend
 npm install
-
-echo "Building frontend..."
 npm run build
-
-echo "Moving to root directory..."
 cd ..
 
-echo "Creating production build directory..."
-mkdir -p public
-cp -r frontend/build/* public/
+# Install backend dependencies
+echo "🔧 Installing backend dependencies..."
+cd backend
+npm install
 
-echo "Build completed successfully!"
+echo "✅ Build completed successfully!"
+echo "Frontend build: frontend/build/"
+echo "Backend ready: backend/"

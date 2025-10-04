@@ -2,6 +2,23 @@
 
 A comprehensive ticketing system with React frontend, Node.js backend, SLA timers, role-based access control, and threaded comments.
 
+## � Project Structure
+
+```
+Mini-Helpdesk/
+├── 📱 frontend/          # React frontend application
+│   ├── src/             # React components and pages
+│   ├── public/          # Static assets
+│   └── package.json     # Frontend dependencies
+├── 🚀 backend/          # Node.js + Express API server
+│   ├── routes/          # API endpoints
+│   ├── database/        # SQLite database
+│   ├── middleware/      # Authentication & validation
+│   ├── utils/           # Helper functions
+│   └── package.json     # Backend dependencies
+└── 📖 README.md         # This file
+```
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -12,6 +29,7 @@ A comprehensive ticketing system with React frontend, Node.js backend, SLA timer
 
 1. **Install backend dependencies:**
    ```bash
+   cd backend
    npm install
    ```
 
@@ -22,18 +40,24 @@ A comprehensive ticketing system with React frontend, Node.js backend, SLA timer
    cd ..
    ```
 
-3. **Start the application:**
+3. **Start the development servers:**
+   
+   **Backend (Terminal 1):**
    ```bash
-   ./start.sh
+   cd backend
+   npm run dev
+   ```
+   
+   **Frontend (Terminal 2):**
+   ```bash
+   cd frontend
+   npm start
    ```
 
-   Or manually:
+4. **Seed the database with sample data:**
    ```bash
-   # Terminal 1 - Backend (port 9000)
-   npm run dev
-   
-   # Terminal 2 - Frontend (port 3000)
-   cd frontend && npm start
+   cd backend
+   npm run seed
    ```
 
 ### 🌐 Access Points
@@ -42,6 +66,7 @@ A comprehensive ticketing system with React frontend, Node.js backend, SLA timer
 - **Backend API:** http://localhost:9000/api
 - **API Health Check:** http://localhost:9000/api/health
 - **API Documentation:** http://localhost:9000/api/_meta
+- **Service Discovery:** http://localhost:9000/.well-known/hackathon.json
 
 ## Features
 
@@ -59,9 +84,7 @@ A comprehensive ticketing system with React frontend, Node.js backend, SLA timer
 
 This application implements a modern REST API architecture with clear separation between frontend and backend layers. The Node.js Express backend serves as a stateless API server using SQLite for persistent storage with comprehensive indexing for optimal performance. JWT-based authentication ensures secure, scalable user sessions across distributed environments.
 
-Key architectural decisions include: Role-based access control for multi-tenant security, optimistic locking for concurrent data integrity, idempotency keys for reliable operation retries, and comprehensive audit logging through timeline tracking. The frontend uses vanilla JavaScript with modular component architecture for maintainability. Rate limiting and input validation provide robust security boundaries, while pagination and search capabilities ensure scalable data handling as the system grows.
-
-The SQLite database schema uses foreign key constraints and indexes to maintain data integrity and query performance, making this solution suitable for small to medium-scale deployments with enterprise-grade reliability requirements.
+Key architectural decisions include: Role-based access control for multi-tenant security, optimistic locking for concurrent data integrity, idempotency keys for reliable operation retries, and comprehensive audit logging through timeline tracking. The frontend uses React with modular component architecture for maintainability. Rate limiting and input validation provide robust security boundaries, while pagination and search capabilities ensure scalable data handling as the system grows.
 
 ## API Summary
 
@@ -84,29 +107,6 @@ The SQLite database schema uses foreign key constraints and indexes to maintain 
 - `GET /api/health` - Health check
 - `GET /api/_meta` - API documentation and metadata
 - `GET /.well-known/hackathon.json` - Service discovery
-
-## Installation & Setup
-
-1. **Clone and install dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
-
-3. **Seed the database with sample data:**
-   ```bash
-   npm run seed
-   ```
-
-4. **Access the application:**
-   - Web Interface: http://localhost:3000
-   - API Documentation: http://localhost:9000/api/_meta
-   - Health Check: http://localhost:9000/api/health
-   - Service Discovery: http://localhost:9000/.well-known/hackathon.json
 
 ## Test User Credentials
 
@@ -342,4 +342,4 @@ For production deployment:
 - **Authentication**: JWT-based stateless authentication
 - **Authorization**: Role-based access control
 
-This HelpDesk Mini application provides a robust foundation for ticket management with enterprise-grade features in a lightweight, easy-to-deploy package.# Mini-Helpdesk
+This HelpDesk Mini application provides a robust foundation for ticket management with enterprise-grade features in a lightweight, easy-to-deploy package.
