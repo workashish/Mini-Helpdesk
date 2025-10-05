@@ -16,6 +16,11 @@ const Database = require('./database/db');
 const app = express();
 const PORT = process.env.PORT || 9000;
 
+// Trust proxy for Railway/production deployment
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', true);
+}
+
 // Initialize database
 const db = new Database();
 
@@ -96,25 +101,20 @@ app.get('/.well-known/hackathon.json', (req, res) => {
   });
 });
 
-// Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-  // Serve static files from React build
-  app.use(express.static(path.join(__dirname, 'public')));
-  
-  // Handle React Router - send all non-API requests to index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// API-only routes - no frontend serving
+app.get('/', (req, res) => {
+  res.json({
+    message: "HelpDesk Mini API Server",
+    status: "running",
+    environment: process.env.NODE_ENV || 'development',
+    frontend: "Frontend is deployed separately on Vercel",
+    endpoints: {
+      health: "/api/health",
+      documentation: "/api/_meta",
+      hackathon: "/.well-known/hackathon.json"
+    }
   });
-} else {
-  // Development mode - API only
-  app.get('/', (req, res) => {
-    res.json({
-      message: "HelpDesk Mini API Server",
-      frontend: "Run 'cd frontend && npm start' to start the frontend",
-      documentation: "/api/_meta"
-    });
-  });
-}
+});
 
 // Handle 404 for API routes
 app.use('/api/*', (req, res) => {
