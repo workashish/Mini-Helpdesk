@@ -33,8 +33,3 @@ build/
 
 # Package manager files at root (if any)
 node_modules/
-
-# Deployment specific files that might be generated
-.railway/
-.vercel/
-.netlify/

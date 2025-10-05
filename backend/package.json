@@ -8,8 +8,9 @@
     "dev": "nodemon server.js",
     "test": "NODE_ENV=test jest",
     "seed": "node scripts/seed.js",
-    "build": "chmod +x build.sh && ./build.sh",
-    "heroku-postbuild": "npm run build"
+    "build": "echo 'Build completed - no build step needed for backend'",
+    "railway:build": "npm ci --only=production",
+    "railway:start": "node server.js"
   },
   "keywords": [
     "helpdesk",

@@ -1,0 +1,14 @@
+# Nixpacks configuration for Railway
+providers = ["node"]
+
+[phases.setup]
+nixPkgs = ["nodejs-18_x", "npm-9_x"]
+
+[phases.install]
+cmds = ["npm ci --only=production --no-audit --no-fund"]
+
+[phases.build]
+cmds = ["echo 'No build step required for backend API'"]
+
+[start]
+cmd = "node server.js"

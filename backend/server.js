@@ -23,7 +23,19 @@ const db = new Database();
 app.use(helmet({
   contentSecurityPolicy: false, // Disable CSP for development
 }));
-app.use(cors());
+
+// CORS configuration for Vercel frontend
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN || [
+    'http://localhost:3000',
+    'https://your-vercel-app.vercel.app',
+    /\.vercel\.app$/  // Allow all Vercel domains
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

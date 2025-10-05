@@ -11,7 +11,7 @@ yarn-error.log*
 .env.test.local
 # Keep .env.production for deployment reference
 
-# Database files (comment out if you want to include in deployment)
+# Database files
 # *.sqlite
 # *.sqlite3
 # *.db
